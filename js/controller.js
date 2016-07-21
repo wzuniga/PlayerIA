@@ -70,7 +70,7 @@ app.controller('myCtrl', function($scope, $http) {
     }
 
     $scope.play = function(){
-
+        
         console.log($scope.n_songs.length);
         $scope.songPlaying(1);
         console.log($scope.currentSong.id);
@@ -81,9 +81,29 @@ app.controller('myCtrl', function($scope, $http) {
         if ( $scope.varInit == 0 ){
             console.log("No puedes avansar");
         }else{
-            $scope.songPlaying(parseInt($scope.currentSong.id));
-            console.log(parseInt($scope.currentSong.id)+1);
+            var song_id = parseInt($scope.currentSong.id)%$scope.n_songs.length;
+            $scope.songPlaying(song_id+1);
+            console.log(parseInt($scope.currentSong.id));
         }
     }  
+
+    $scope.prev = function(){
+        //console.log($scope.n_songs.length);
+        if ( $scope.varInit == 0 ){
+            console.log("No puedes retoceder");
+        }else{
+            var id_current = parseInt($scope.currentSong.id);
+            var song_id = (id_current==1)?$scope.n_songs.length+1:id_current;
+            $scope.songPlaying(song_id-1);
+            console.log(parseInt($scope.currentSong.id));
+        }
+    }
+
+    $scope.maxminVol = function(){
+        if ($scope.volumen > 10 )
+            $scope.volumen = 10;
+        else if ($scope.volumen < 0)
+            $scope.volumen = 0;
+    }
 
 });
