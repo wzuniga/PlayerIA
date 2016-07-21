@@ -74,7 +74,7 @@
                     <table>
                     <tr  ng-repeat="song in songs">  <td class="list-group-item">
                         {{$index + 1}}</td>
-                        <td ng-click="songPlaying(song.id)"><a href="#" class="list-group-item">{{song.grupo +" - "+ song.name }}</a></td>
+                        <td ng-click="playSongID(song.id)"><a href="#" class="list-group-item">{{song.grupo +" - "+ song.name }}</a></td>
                     </tr>
                     </table>
                     
@@ -113,9 +113,21 @@
                         </div>
 
                         <center>
-                            <div class="col-md-4" ng-click="prev()"><img src="img/prew.PNG"></div>
-                            <div class="col-md-4" ng-click="play()"><img src="img/play.png"></div>
-                            <div class="col-md-4" ng-click="next()"><img src="img/next.PNG"></div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-default btn-lg" aria-label="Left Align" ng-click="prev()">
+                                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-default btn-lg" aria-label="Left Align" ng-click="play()">
+                                    <span class="glyphicon glyphicon-{{icon}}" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-default btn-lg" aria-label="Left Align" ng-click="next()">
+                                    <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                                </button>
+                            </div>
                         </center>
                         
                     </div>
@@ -124,7 +136,7 @@
 
                 <div class="row">
 
-                    <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="n_song in n_songs" ng-click="songPlaying(n_song.id)">
+                    <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="n_song in n_songs" ng-click="playSongID(n_song.id)">
                         <div class="thumbnail">
                             <!--img src="http://placehold.it/320x150" alt=""-->
                             <div class="caption">

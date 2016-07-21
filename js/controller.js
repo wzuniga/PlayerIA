@@ -9,6 +9,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
     $scope.varInit = 0;
     $scope.percent = 0;
     $scope.state = true;
+    $scope.icon = "pause";
 
     /*var arr = [{grupo : "Mana", name:"Mariposa Traicionera"},
                {grupo : "Mana", name:"Mi verdad"},
@@ -46,6 +47,10 @@ app.controller('myCtrl', function($scope, $http, $interval) {
             $scope.songPlaying(1);
     });
 
+    $scope.playSongID = function(id){
+        $scope.songPlaying(id);
+        $scope.percent = 0;
+    }
     //captar la cancion
     $scope.songPlaying = function(id){
         
@@ -53,7 +58,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
             //console.log("nullooo");
             $scope.varInit = 1;
         }else{
-
+            
             $scope.currentSong_old = $scope.currentSong;
             //console.log("Hey mama");
             /*$http.post("php/llenarDatos.php", {
@@ -63,6 +68,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
             }).success(function(respuesta){
                 console.log(respuesta);
             });*/
+            console.log("Primero");
         }
 
         
@@ -81,9 +87,11 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         if ($scope.state) {
             $interval.cancel($scope.timer);
             $scope.state = false;
+            $scope.icon = "play";
         }else{
             $scope.timer = $interval( function(){ $scope.callAtInterval(); }, 1000);
             $scope.state = true;
+            $scope.icon = "pause";
         }
     }    
     
@@ -124,6 +132,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
     $scope.callAtInterval = function() {
         if ( $scope.percent > 100 ){
             $scope.next();
+            console.log("Segundo");
             $scope.percent = 0;
         }
         $scope.percent++;
