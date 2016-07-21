@@ -139,4 +139,19 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         //console.log("$scope.callAtInterval - Interval occurred");
     }
     
+    $scope.changeSongState = function(id_song, estado){
+        $http.post("php/changeState.php", {
+            id:id_song,
+            state:estado
+        }).success(function(respuesta){
+            console.log("Cambio realizado");
+        });
+        
+        $http.post("php/obtenerCanciones.php", {
+        }).success(function(respuesta){
+            $scope.n_songs = respuesta;
+            $scope.songPlaying(1);
+        });
+        window.location.reload();
+    }
 });

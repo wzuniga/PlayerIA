@@ -10,7 +10,7 @@
         exit;
     }
 
-    $sql = 'SELECT C.idCancion, C.nombre, G.nombre_genero, A.nombre AS aut, L.nombre AS alb FROM cancion C INNER JOIN genero G INNER JOIN artista A INNER JOIN album L ON C.idGenero = G.idGenero AND C.idArtista = A.idArtista AND C.idAlbum = L.idAlbum';
+    $sql = 'SELECT C.idCancion, C.nombre, G.nombre_genero, A.nombre AS aut, L.nombre AS alb, C.stado FROM cancion C INNER JOIN genero G INNER JOIN artista A INNER JOIN album L ON C.idGenero = G.idGenero AND C.idArtista = A.idArtista AND C.idAlbum = L.idAlbum';
     $resultado = mysql_query($sql, $enlace);
 
     if (!$resultado) {
@@ -23,7 +23,7 @@
     $fila = mysql_fetch_assoc($resultado);
     
     for ($i=0; $i < $num ; $i++) { 
-        $vals[$i] = array('id'=>$fila['idCancion'],'name'=>$fila['nombre'],'genero'=>$fila['nombre_genero'],'album'=>$fila['alb'],'autor'=>$fila['aut']);
+        $vals[$i] = array('id'=>$fila['idCancion'],'name'=>$fila['nombre'],'genero'=>$fila['nombre_genero'],'album'=>$fila['alb'],'autor'=>$fila['aut'],'state'=>$fila['stado']);
         $fila = mysql_fetch_assoc($resultado);
     }
 

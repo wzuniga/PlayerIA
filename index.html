@@ -146,14 +146,23 @@
                                 <p>Album: {{n_song.album}}</p>
                             </div>
                             <div class="ratings">
-                                <p class="pull-right">{{n_song.genero}}</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-{{n_song.state == 1 ? 'success' : 'info' }}" ng-click="changeSongState(n_song.id,1)">
+                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-{{n_song.state == -1 ? 'success' : 'danger' }}" ng-click="changeSongState(n_song.id,-1)">
+                                                <span class="glyphicon glyphicon-thumbs-down"></span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <p class="pull-right">{{n_song.genero}}</p>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
